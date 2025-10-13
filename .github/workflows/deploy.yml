@@ -31,4 +31,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages         # target branch for deployment
-          folder: dist/ecommerce      # path to build output folder
+          #folder: dist/ecommerce      # path to build output folder (old version of angular)
+          folder: dist/browser      # path to build output folder (new version of angular)
