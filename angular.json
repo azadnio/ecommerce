@@ -44,6 +44,8 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "outputPath": "dist/ecommerce",
+            "baseHref": "/ecommerce/",
             "assets": [
               {
                 "glob": "**/*",
