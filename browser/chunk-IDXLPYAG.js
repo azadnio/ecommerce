@@ -1,0 +1,1 @@
+import{Ga as n,Ua as o,Va as r,db as s}from"./chunk-BZ54NO2U.js";var e=class a{static \u0275fac=function(t){return new(t||a)};static \u0275cmp=n({type:a,selectors:[["app-cart"]],decls:2,vars:0,template:function(t,i){t&1&&(o(0,"p"),s(1,"cart works!"),r())},encapsulation:2})};export{e as default};
