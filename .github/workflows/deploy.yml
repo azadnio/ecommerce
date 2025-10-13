@@ -1,4 +1,4 @@
-name: Deploy Angular App to GitHub Pages
+name: Deploy Angular App (ecommerce) to GitHub Pages
 
 on:
   push:
@@ -28,4 +28,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages         # target branch for deployment
-          folder: dist/my-app      # path to build output folder
+          folder: dist/ecommerce      # path to build output folder
