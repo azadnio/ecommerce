@@ -1,1 +1,0 @@
-import{Ga as r,Ua as i,Va as d,db as n}from"./chunk-BZ54NO2U.js";var e=class o{static \u0275fac=function(t){return new(t||o)};static \u0275cmp=r({type:o,selectors:[["app-product-grid"]],decls:2,vars:0,template:function(t,p){t&1&&(i(0,"p"),n(1,"product-grid works!"),d())},encapsulation:2})};export{e as default};

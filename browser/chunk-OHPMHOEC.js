@@ -1,1 +1,0 @@
-import{Ga as i,Ua as n,Va as o,db as a}from"./chunk-BZ54NO2U.js";var e=class s{static \u0275fac=function(t){return new(t||s)};static \u0275cmp=i({type:s,selectors:[["app-my-wishlist"]],decls:2,vars:0,template:function(t,m){t&1&&(n(0,"p"),a(1,"my-wishlist works!"),o())},encapsulation:2})};export{e as default};

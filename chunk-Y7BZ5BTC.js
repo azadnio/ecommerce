@@ -1,0 +1,1 @@
+import{Qa as n,kb as o,lb as r,zb as s}from"./chunk-BTM2CVOY.js";var e=class a{static \u0275fac=function(t){return new(t||a)};static \u0275cmp=n({type:a,selectors:[["app-cart"]],decls:2,vars:0,template:function(t,i){t&1&&(o(0,"p"),s(1,"cart works!"),r())},encapsulation:2})};export{e as default};
