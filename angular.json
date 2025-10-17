@@ -44,7 +44,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "outputPath": "dist/browser",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "baseHref": "/ecommerce/",
             "assets": [
