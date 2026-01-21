@@ -27,8 +27,8 @@ import { EcommerceStore } from '../../store/store';
 
         <div class="flex items-center justify-between mt-auto">
           <span class="text-2xl font-bold text-gray-900">\${{product().price}}</span>
-          <button matButton="filled" class="flex items-center gap-2">
-            <mat-icon>shoping_cart</mat-icon>
+          <button matButton="filled" class="flex items-center gap-2" (click)="store.addToCart(product())">
+            <mat-icon>shopping_cart</mat-icon>
             Add to cart
           </button>
         </div>
@@ -39,5 +39,5 @@ import { EcommerceStore } from '../../store/store';
 })
 export class ProductCard {
   product = input.required<Product>();
-  
+  store = inject(EcommerceStore);
 }

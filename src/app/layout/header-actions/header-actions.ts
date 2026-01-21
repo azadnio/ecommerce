@@ -13,7 +13,9 @@ import { EcommerceStore } from '../../store/store';
       <button matIconButton aria-label="Favorite" [matBadge]="store.wishListCount()" [matBadgeHidden]="!store.wishListCount()" routerLink="/wishlist">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button matIconButton aria-label="Shopping Cart" routerLink="/cart">
+      <button matIconButton aria-label="Shopping Cart" routerLink="/cart"
+      [matBadge]="store.cartCount()" [matBadgeHidden]="!store.cartCount()"
+      >
         <mat-icon>shopping_cart</mat-icon>
       </button>
       <button matButton="">Sign In</button>
