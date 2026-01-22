@@ -19,4 +19,12 @@ export const routes: Routes = [
     // loadComponent: () => import('./pages/cart/cart'),
     loadComponent: () => import('./pages/view-cart/view-cart'),
   },
+  {
+    path: 'checkout',
+    loadComponent: () => import('./pages/checkout/checkout'),
+  },
+  {
+    path: 'order-success',
+    loadComponent: () => import('./pages/order-success/order-success'),
+  }
 ];
