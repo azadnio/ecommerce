@@ -18,6 +18,7 @@ export type EcommerceState = {
     cartItems: CartItem[];
     user: User | undefined;
     loading: boolean;
+    selectedProductId: string | undefined;
 }
 
 export const EcommerceStore = signalStore(
@@ -30,9 +31,10 @@ export const EcommerceStore = signalStore(
         wishListItems: [],
         cartItems: [],
         user: undefined,
-        loading: false
+        loading: false,
+        selectedProductId: undefined
     } as EcommerceState),
-    withComputed(({ products, category, wishListItems, cartItems }) => ({
+    withComputed(({ products, category, wishListItems, cartItems, selectedProductId }) => ({
         filteredProducts: computed(() => {
             if (category() === 'all') return products();
             return products().filter(p =>
@@ -40,11 +42,15 @@ export const EcommerceStore = signalStore(
             )
         }),
         wishListCount: computed(() => wishListItems().length),
-        cartCount: computed(() => cartItems().reduce((total, item) => total + item.quantity, 0))
+        cartCount: computed(() => cartItems().reduce((total, item) => total + item.quantity, 0)),
+        selectedProduct: computed(() => products().find(p => p.id === selectedProductId())),
     })),
     withMethods((store, toaster = inject(Toaster), matDialog = inject(MatDialog), router = inject(Router)) => ({
         setCategory: signalMethod<string>((category: string) => {
             patchState(store, { category })
+        }),
+        setProductId: signalMethod<string | undefined>((productId: string | undefined) => {
+            patchState(store, { selectedProductId: productId })
         }),
         addToWishList: (product: Product) => {
             const updatedWishList = produce(store.wishListItems(), (draft) => {

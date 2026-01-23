@@ -43,7 +43,7 @@ import { ToggleWishlistButton } from '../../components/toggle-wishlist-button/to
         <div class="responsive-grid">
           @for(product of store.filteredProducts(); track product.id) {
             <app-product-card [product]="product">
-              <app-toggle-wishlist-button [product]="product" class="!absolute z-10 top-3 right-3">
+              <app-toggle-wishlist-button [product]="product" class="!absolute z-10 top-3 right-3" [style.view-transition-name]="'whish-list-item-' + product.id">
               </app-toggle-wishlist-button>
             </app-product-card>
           }
