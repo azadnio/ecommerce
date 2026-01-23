@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
         <h2 class="font-semibold text-green-600 text-2xl font-bold">Order successful!</h2>
         <p class="text-base">
           Thank you for your purchase! 
-          Your order has been confirmed                     and will be shipped soon.</p>
+          Your order has been confirmed and will be shipped soon.</p>
         <p class="text-gray-600">
           You will receive an email confirmation shortly with the details of your order. and tracking information once your items have shipped.
         </p>

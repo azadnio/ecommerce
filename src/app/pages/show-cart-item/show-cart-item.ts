@@ -11,7 +11,7 @@ import { MatIcon } from "@angular/material/icon";
   template: `
     <div class="grid grid-cols-3 grid-cols-[3fr_1fr_1fr]">
       <div class="flex items-center gap-4">
-        <img [src]="item().product.imageUrl" alt="{{ item().product.name }}" class="w-24 h-24 object-cover rounded"/>
+        <img [src]="item().product.imageUrl" alt="{{ item().product.name }}" class="w-24 h-24 object-cover rounded" [style.view-transition-name]="'product-image-' + item().product.id" />
         <div>
           <div class="text-gray-900 text-lg font-semibold">{{ item().product.name }}</div>
           <div class="text-gray-500 text-lg font-semibold">\${{ item().product.price }}</div>
