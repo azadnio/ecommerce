@@ -4,10 +4,11 @@ import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { EcommerceStore } from '../../store/store';
 import { RouterLink } from '@angular/router';
+import { StarRating } from "../star-rating/star-rating";
 
 @Component({
   selector: 'app-product-card',
-  imports: [MatButton, MatIcon, RouterLink],
+  imports: [MatButton, MatIcon, RouterLink, StarRating],
   template: `
     <div class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full
       transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-xl
@@ -29,9 +30,12 @@ import { RouterLink } from '@angular/router';
           {{product().description}}
         </p>
 
-        <!-- add rating component -->
+        <app-star-rating [rating]="product().rating" class="mb-3">
+          ({{product().reviewCount}})
+        </app-star-rating>
+  
         <div class="text-sm font-medium mb-4">
-        {{product().inStock ? "In Stock": "Out of stock"}}
+          {{product().inStock ? "In Stock": "Out of stock"}}
         </div>
 
         <div class="flex items-center justify-between mt-auto">
