@@ -10,6 +10,7 @@ import { SignInDialog } from "../components/sign-in-dialog/sign-in-dialog";
 import { SignInParams, SignUpParams, User } from "../models/user";
 import { Router } from "@angular/router";
 import { Order } from "../models/order";
+import { AddReviewParams, UserReview } from "../models/user-review";
 
 export type EcommerceState = {
     products: Product[];
@@ -19,6 +20,7 @@ export type EcommerceState = {
     user: User | undefined;
     loading: boolean;
     selectedProductId: string | undefined;
+    writeReview: boolean;
 }
 
 export const EcommerceStore = signalStore(
@@ -32,7 +34,8 @@ export const EcommerceStore = signalStore(
         cartItems: [],
         user: undefined,
         loading: false,
-        selectedProductId: undefined
+        selectedProductId: undefined,
+        writeReview: false
     } as EcommerceState),
     withComputed(({ products, category, wishListItems, cartItems, selectedProductId }) => ({
         filteredProducts: computed(() => {
@@ -141,9 +144,9 @@ export const EcommerceStore = signalStore(
             }
         },
 
-        placeOrder: async() => {
+        placeOrder: async () => {
 
-            if(!store.user()){
+            if (!store.user()) {
                 toaster.error('Please sign in to place the order');
                 return;
             }
@@ -207,6 +210,46 @@ export const EcommerceStore = signalStore(
                 router.navigate(['/checkout']);
             }
             toaster.sucess('Account created successfully!');
+        },
+
+        showWriteReview: () => {
+            patchState(store, { writeReview: true });
+        },
+
+        hideWriteReview: () => {
+            patchState(store, { writeReview: false });
+        },
+
+        addReview: async ({ rating, comment, title }: AddReviewParams) => {
+            // Logic to add the review goes here
+            patchState(store, { loading: true });
+
+            const produt = store.products().find(p => p.id === store.selectedProductId());
+            if (!produt) {
+                patchState(store, { loading: false });
+                return;
+            }
+
+            const review: UserReview = {
+                id: Math.random().toString(36).substring(2, 9),
+                productId: produt.id.toString(),
+                userName: store.user() ? store.user()!.name : 'Anonymous',
+                userImageUrl: store.user() && store.user()!.imageUrl ? store.user()!.imageUrl! : 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
+                rating,
+                comment,
+                title,
+                reviewDate: new Date()
+            };
+
+            const updatedProduct = produce(store.products(), (draft) => {
+                const index = draft.findIndex(p => p.id === produt.id);
+                draft[index].reviews.push(review);
+                draft[index].reviewCount += 1;
+                draft[index].rating = parseFloat((draft[index].reviews.reduce((sum, r) => sum + r.rating, 0) / draft[index].reviews.length).toFixed(1));
+            });
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            patchState(store, { loading: false, writeReview: false, products: updatedProduct });
         }
     }))
 );
