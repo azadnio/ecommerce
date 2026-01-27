@@ -11,6 +11,8 @@ import { SignInParams, SignUpParams, User } from "../models/user";
 import { Router } from "@angular/router";
 import { Order } from "../models/order";
 import { AddReviewParams, UserReview } from "../models/user-review";
+import { SeoManager } from "../services/seo-manager";
+import { SeoData } from "../models/seo-data";
 
 export type EcommerceState = {
     products: Product[];
@@ -48,12 +50,33 @@ export const EcommerceStore = signalStore(
         cartCount: computed(() => cartItems().reduce((total, item) => total + item.quantity, 0)),
         selectedProduct: computed(() => products().find(p => p.id === selectedProductId())),
     })),
-    withMethods((store, toaster = inject(Toaster), matDialog = inject(MatDialog), router = inject(Router)) => ({
+    withMethods((store, toaster = inject(Toaster), matDialog = inject(MatDialog), router = inject(Router), seoManager = inject(SeoManager)) => ({
+        setProductListSEOtags: signalMethod<string | undefined>((category) => {
+            // Implementation for setting SEO tags can be added here
+            const categoryName = category ? category.charAt(0).toUpperCase() + category.slice(1) : 'All Products';
+            const seoData: SeoData = {
+                title: category ? `${categoryName} - My E-commerce Store` : 'My E-commerce Store',
+                description: category ? `Browse our selection of ${categoryName} products.` : 'Browse our selection of products across all categories.',
+                type: 'website'
+            };
+            seoManager.updateSeoData(seoData);
+        }),
         setCategory: signalMethod<string>((category: string) => {
             patchState(store, { category })
-        }),
+        }),        
         setProductId: signalMethod<string | undefined>((productId: string | undefined) => {
             patchState(store, { selectedProductId: productId })
+        }),
+        setProductSEOtags: signalMethod<Product | undefined>((product) => {
+            // Implementation for setting SEO tags can be added here
+            if (!product) return;
+            const seoData: SeoData = {
+                title: product.name + ' - My E-commerce Store',
+                description: product.description,
+                image: product.imageUrl,
+                type: 'product'
+            };
+            seoManager.updateSeoData(seoData);
         }),
         addToWishList: (product: Product) => {
             const updatedWishList = produce(store.wishListItems(), (draft) => {

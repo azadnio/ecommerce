@@ -12,13 +12,13 @@ import { CategoryApi } from '../../services/category-api';
 @Component({
   selector: 'app-product-grid',
   imports: [
-    TitleCasePipe, 
-    ProductCard, 
-    MatSidenav, 
-    MatSidenavContainer, 
-    MatSidenavContent, 
-    MatNavList, 
-    MatListItem, 
+    TitleCasePipe,
+    ProductCard,
+    MatSidenav,
+    MatSidenavContainer,
+    MatSidenavContent,
+    MatNavList,
+    MatListItem,
     RouterLink,
     ToggleWishlistButton
   ],
@@ -74,6 +74,7 @@ export default class ProductGrid {
 
   constructor() {
     this.store.setCategory(this.category);
+    this.store.setProductListSEOtags(this.category);
   }
 
 }
