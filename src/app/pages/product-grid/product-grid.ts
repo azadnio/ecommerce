@@ -7,6 +7,7 @@ import { MatNavList, MatListItem } from '@angular/material/list';
 import { RouterLink } from '@angular/router';
 import { EcommerceStore } from '../../store/store';
 import { ToggleWishlistButton } from '../../components/toggle-wishlist-button/toggle-wishlist-button';
+import { CategoryApi } from '../../services/category-api';
 
 @Component({
   selector: 'app-product-grid',
@@ -61,6 +62,7 @@ import { ToggleWishlistButton } from '../../components/toggle-wishlist-button/to
 export default class ProductGrid {
   category = input<string>('all');
   store = inject(EcommerceStore);
+  categoryApi = inject(CategoryApi);
   // products = signal<Product[]>();
   // filteredProducts = computed(() => {
   //   if (this.category() === 'all') return this.products();
@@ -68,7 +70,7 @@ export default class ProductGrid {
   //     p.category.toLocaleLowerCase() === this.category().toLocaleLowerCase()
   //   )
   // });
-  categories = signal<string[]>(['all', 'Electronics', 'Clothing', 'Sports & Outdoors', 'Bags & Luggage', 'Home & Kitchen', 'Footwear'])
+  categories = signal<string[]>(this.categoryApi.getCategories());
 
   constructor() {
     this.store.setCategory(this.category);
