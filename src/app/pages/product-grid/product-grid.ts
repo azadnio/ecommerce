@@ -74,7 +74,6 @@ export default class ProductGrid {
 
   constructor() {
     this.store.setCategory(this.category);
-    this.store.setProductListSEOtags(this.category);
   }
 
 }
