@@ -1,0 +1,1 @@
+import{ma as t}from"./chunk-BTRADCIE.js";var e=class r{constructor(){}static \u0275fac=function(i){return new(i||r)};static \u0275dir=t({type:r,selectors:[["","appViewPanal",""]],hostAttrs:[1,"border","border-gray-200","rounded-xl","p-6","bg-white"]})};export{e as a};
