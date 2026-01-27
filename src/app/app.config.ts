@@ -3,6 +3,7 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { routes } from './app.routes';
 import { provideHotToastConfig } from '@ngxpert/hot-toast';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,6 @@ export const appConfig: ApplicationConfig = {
         floatLabel: 'never', 
         subscriptSizing: 'dynamic' 
       }
-    }
+    }, provideClientHydration(withEventReplay())
   ]
 };
